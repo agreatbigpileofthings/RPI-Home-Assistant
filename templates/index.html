@@ -14,20 +14,30 @@
 	<div class="card bg-secondary mb-3">
 		<div class ="card-body">
 		<h3>CPU Usage</h3>
-			<p>{{ cpu }}%</p>
+			<p id="cpu">0%</p>
 		</div>
 	</div>
 	
 	<div class="card bg-secondary mb-3">
 		<div class ="card-body">
 		<h3>RAM Usage</h3>		
-			<p> {{ ram }}%</p>
+			<p id="ram">0%</p>
 		</div>
 	</div>
-	<div>
+
+	<div class="card bg-secondary mb-3">
+		<div class ="card-body">
+		<h3>Temperature </h3>
+			<p id="temp">C</p>
+		</div>
+	</div>
 	<h3>Live Feed</h3>
 		<p><img src="/video"> </p>
 	</div>
+<script
+	src="{{ url_for('static', filename='app.js') }}">
+</script>
+
 </body>
 
 </html>

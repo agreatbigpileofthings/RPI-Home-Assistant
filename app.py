@@ -13,7 +13,7 @@ def generate_frames():
 	while True:
 		frame = camera.capture_array()
 		##Convert to JPG
-		ret,buffer =cv2.imencode('.jpg',frame)
+		ret,buffer = cv2.imencode('.jpg',frame)
 		frame = buffer.tobytes()
 		yield (b'--frame\r\n'
 			b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
@@ -23,6 +23,19 @@ def generate_frames():
 def video():
 	return Response(generate_frames(),
 		mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/stats")
+def stats():
+	temps = psutil.sensors_temperatures()
+	cpu_temp = temps['cpu_thermal'][0].current
+	cpu_temp = round(cpu_temp,1)
+
+	return {
+	"cpu": psutil.cpu_percent(),
+	"ram": psutil.virtual_memory().percent,
+	"temp": cpu_temp
+}
+
 
 @app.route("/")
 def home():
