@@ -1,50 +1,101 @@
 <!DOCTYPE html>
-<html>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<html lang="en">
 <head>
-	<title> Baby's First Dashboard </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AI Home Dashboard</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
 </head>
 
-<body class ="bg-dark text-light">
-	<h1 class ="mb-4">
-		 AI Home Dashboard
-	 </h1>
-	<div class="card bg-secondary mb-3">
-		<div class ="card-body">
-		<h3>CPU Usage</h3>
-			<p id="cpu">0%</p>
-		</div>
-	</div>
-	
-	<div class="card bg-secondary mb-3">
-		<div class ="card-body">
-		<h3>RAM Usage</h3>		
-			<p id="ram">0%</p>
-		</div>
-	</div>
+<body class="bg-dark text-light">
 
-	<div class="card bg-secondary mb-3">
-		<div class ="card-body">
-		<h3>Temperature </h3>
-			<p id="temp">C</p>
-		</div>
-	</div>
-	<div class="card bg-secondary mb-3">
-		<div class ="card-body">
-			<h3>Motion Detected</h3>
-			<p id="motion">No Motion Detected</p>
-		</div>
-	</div>
+<div class="container py-4">
 
-	<h3>Live Feed</h3>
-		<p><img src="/video"> </p>
-	</div>
-<script
-	src="{{ url_for('static', filename='app.js') }}">
-</script>
+    <h1 class="mb-4">AI Home Dashboard</h1>
+
+    <!-- SYSTEM STATS -->
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <div class="card bg-secondary h-100">
+                <div class="card-body">
+                    <h5>CPU Usage</h5>
+                    <p id="cpu">0%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-secondary h-100">
+                <div class="card-body">
+                    <h5>RAM Usage</h5>
+                    <p id="ram">0%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-secondary h-100">
+                <div class="card-body">
+                    <h5>Temperature</h5>
+                    <p id="temp">0°C</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DETECTION STATUS -->
+    <div class="row g-3 mt-2">
+
+        <div class="col-md-6">
+            <div class="card bg-secondary h-100">
+                <div class="card-body">
+                    <h5>Motion</h5>
+                    <p id="motion">No Motion Detected</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card bg-secondary h-100">
+                <div class="card-body">
+                    <h5>Person</h5>
+                    <p id="person">No Person Detected</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ASSISTANT SPEECH -->
+    <div class="card bg-secondary mt-4">
+        <div class="card-body">
+            <h5>Assistant Speech</h5>
+
+            <div id="currentSpeech" class="p-2 bg-dark rounded mb-2">
+                ...
+            </div>
+
+            <div id="speechHistory" class="small text-muted">
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE FEED -->
+    <div class="mt-4">
+        <h5>Live Feed</h5>
+        <img src="/video" class="img-fluid rounded border border-secondary" />
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>
-
 </html>
